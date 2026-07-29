@@ -1,0 +1,34 @@
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #0C234B;
+  --md-accent-fg-color: #f8892f;
+  --md-typeset-a-color:  #fb9b4c;
+  --md-typeset-mark-color: #ab6907;
+  --md-typeset-color: #f1f1f1;
+}
+
+[data-md-color-scheme="slate"] .grid.cards > ul > li {
+    background-color: #25211c;
+    border: 1px solid #5A3B20;
+}
+
+[data-md-color-scheme="slate"] .grid.cards > ul > li:hover {
+    border-color: #E89B3A;
+}
+
+[data-md-color-scheme="slate"] .md-typeset code {
+  background-color: #211a14;
+  color: #ffad45;
+  font-size: 13px;
+}
+
+.md-typeset .admonition.quote {
+  font-size: 13px;
+  background-color: #424140;
+  color: rgb(233, 233, 233);
+}
+
+.md-typeset .admonition.tip {
+  font-size: 13px;
+  background-color: #2d4c40;
+  color: rgb(233, 233, 233);
+}

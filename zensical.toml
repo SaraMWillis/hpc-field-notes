@@ -41,13 +41,24 @@ extra_css = ["assets/stylesheets/extra.css"]
    ]},
    {"Recipes" = [
     "recipes/index.md",
-    {"Build Recipes"= "recipes/build_recipes/index.md"},
+    {"Build Recipes"= [
+      "recipes/build_recipes/index.md",
+      {"VASP" = "recipes/build_recipes/vasp/index.md"}
+    ]},
     {"Container Recipes"= [
       "recipes/container_recipes/index.md",
       {"Ansys" = "recipes/container_recipes/ansys/index.md"}
       ]},
     {"Module Recipes" = "recipes/module_recipes/index.md"}
    ]},
+   {"Examples" = [
+    "examples/index.md",
+    {"Slurm" = [
+      "examples/slurm/index.md",
+      {"Array & Parallel" = "examples/slurm/array_and_parallel/index.md"},
+      {"Dependencies" = "examples/slurm/dependencies/index.md"}
+        ]}
+      ]},
    {"Cheat Sheets" = [
     "cheat_sheets/index.md",
     {"Apptainer" = "cheat_sheets/apptainer/index.md"},
@@ -96,7 +107,7 @@ extra_css = ["assets/stylesheets/extra.css"]
 # - https://zensical.org/docs/setup/logo-and-icons/#favicon
 # - https://developer.mozilla.org/en-US/docs/Glossary/Favicon
 #
-#favicon = "images/favicon.png"
+favicon = "assets/images/favicon.png"
 
 language = "en"
 

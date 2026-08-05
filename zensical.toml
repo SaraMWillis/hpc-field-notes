@@ -107,6 +107,7 @@ extra_css = ["assets/stylesheets/extra.css"]
 # - https://zensical.org/docs/setup/logo-and-icons/#favicon
 # - https://developer.mozilla.org/en-US/docs/Glossary/Favicon
 #
+
 favicon = "assets/images/favicon.png"
 
 language = "en"

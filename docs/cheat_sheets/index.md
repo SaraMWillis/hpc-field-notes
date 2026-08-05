@@ -6,31 +6,31 @@ icon: material/lightning-bolt-outline
 
 <div class="grid cards" markdown>
 
--   :material-train-car-container:{ .lg .middle } __Apptainer__
+-   :material-train-car-container:{ .lg .middle } __[Apptainer](./apptainer/)__
 
     ---
 
     
 
--   :material-git:{ .lg .middle } __Git__
+-   :material-git:{ .lg .middle } __[Git](./git/)__
 
     ---
 
     
 
--   :material-penguin:{ .lg .middle } __Linux__
+-   :material-penguin:{ .lg .middle } __[Linux](./linux/)__
 
     ---
 
     
 
--   :material-server-network:{ .lg .middle } __MPI__
+-   :material-server-network:{ .lg .middle } __[MPI](./mpi/)__
 
     ---
 
     
 
--   :material-bottle-soda:{ .lg .middle } __Slurm__
+-   :material-bottle-soda:{ .lg .middle } [__Slurm__](./slurm/)
 
     ---
 

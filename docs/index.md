@@ -4,6 +4,8 @@ icon: material/home
 
 # HPC Field Notes
 
+<img class="img-right" src="assets/images/hpc_field_notes.png" width="300px" style="margin: 10px;">
+
 ## What exactly is this?
 
 !!! quote "Future me"
@@ -19,45 +21,43 @@ This site functions as an informal collection of notes, recipes, debugging, and 
 
 <div class="grid cards" markdown>
 
--   :material-notebook-outline:{ .lg .middle } __Field Notes__
+-   :material-notebook-outline:{ .lg .middle } __[Field Notes](field_notes/index.md)__
 
     ---
 
     The accumulated knowledge of working with HPC systems: debugging, installations, containers, SLURM, storage, networking, performance, and remote development.
 
-    [:octicons-arrow-right-24: Browse field notes](field_notes/index.md)
 
--   :material-floppy:{ .lg .middle } __Software__
+-   :material-floppy:{ .lg .middle } __[Software](./software/)__
 
     ---
 
     Notes for building, installing, configuring, and troubleshooting scientific software.
 
-    [:octicons-arrow-right-24: Browse software notes](software/index.md)
 
--   :material-chef-hat:{ .lg .middle } __Recipes__
+-   :material-chef-hat:{ .lg .middle } __[Recipes](./recipes/)__
 
     ---
 
     Build recipes, container recipes, and module recipes.
 
-    [:octicons-arrow-right-24: Browse recipes](recipes/index.md)
+-   :material-chef-hat:{ .lg .middle } __[Recipes](./examples/)__
 
--   :material-lightning-bolt-outline:{ .lg .middle } __Cheat Sheets__
+    ---
+
+    Examples of Slurm jobs, software usage, input files, etc. 
+
+-   :material-lightning-bolt-outline:{ .lg .middle } __[Cheat Sheets](./cheat_sheets/)__
 
     ---
 
     Quick references for Apptainer, Git, Linux, MPI, Slurm, and whatever else Future Me is likely to forget.
 
-    [:octicons-arrow-right-24: Browse cheat sheets](cheat_sheets/index.md)
-
--   :material-book-open-variant:{ .lg .middle } __Reference__
+-   :material-book-open-variant:{ .lg .middle } __[Reference](./reference/)__
 
     ---
 
     The facts and details worth keeping close: cluster quirks, compiler flags, environment variables, useful links, and other things Future Me shouldn't have to rediscover.
-
-    [:octicons-arrow-right-24: Browse reference](reference/index.md)
 
 </div>
 

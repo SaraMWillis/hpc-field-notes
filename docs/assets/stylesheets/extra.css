@@ -32,3 +32,37 @@
   background-color: #2d4c40;
   color: rgb(233, 233, 233);
 }
+
+
+.img-right, 
+.ood-form,
+.highlighted-research {
+    float: right;
+}
+
+@media (max-width: 800px) {
+    .img-right {
+        float: none;
+        display: block;
+        margin: 1rem auto;
+        max-width: 80%;
+    }
+}
+
+
+.grid.cards > ul > li,
+.grid.cards > div > div.card {
+  position: relative;
+}
+
+.grid.cards a {
+  text-decoration: none;
+  color: inherit; 
+}
+
+.grid.cards a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}

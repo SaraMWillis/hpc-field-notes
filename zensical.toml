@@ -22,7 +22,10 @@ extra_css = ["assets/stylesheets/extra.css"]
    { "Home" = "index.md" },
    {"Field Notes" = [
     "field_notes/index.md",
-    {"Debugging" = "field_notes/debugging/index.md"},
+    {"Debugging" = [
+    "field_notes/debugging/index.md",
+    {"Login Woes" = "field_notes/debugging/login_woes/index.md"}
+    ]},
     {"Installations" = "field_notes/installations/index.md"},
     {"Containers" = "field_notes/containers/index.md"},
     {"Slurm" = "field_notes/slurm/index.md"},

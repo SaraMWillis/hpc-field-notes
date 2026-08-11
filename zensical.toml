@@ -46,7 +46,8 @@ extra_css = ["assets/stylesheets/extra.css"]
     "recipes/index.md",
     {"Build Recipes"= [
       "recipes/build_recipes/index.md",
-      {"VASP" = "recipes/build_recipes/vasp/index.md"}
+      {"VASP" = "recipes/build_recipes/vasp/index.md"},
+      {"Miscellaneous" = "recipes/build_recipes/miscellaneous/index.md"}
     ]},
     {"Container Recipes"= [
       "recipes/container_recipes/index.md",
@@ -75,7 +76,8 @@ extra_css = ["assets/stylesheets/extra.css"]
     {"Cluster Quirks" = "reference/cluster_quirks/index.md"},
     {"Compiler Flags" = "reference/compiler_flags/index.md"},
     {"Environment Variables" = "reference/environment_variables/index.md"},
-    {"Useful Links" = "reference/useful_links/index.md"}
+    {"Useful Links" = "reference/useful_links/index.md"},
+    {"Zensical" = "reference/zensical/index.md"}
    ]}
  ]
 

@@ -86,3 +86,8 @@
   -webkit-mask: url("../images/ghost-outline.svg") no-repeat center / contain;
   mask: url("../images/ghost-outline.svg") no-repeat center / contain;
 }
+
+.hero-image {
+  image-rendering: pixelated;
+  float: right;
+}

@@ -81,3 +81,11 @@ tres-per-job     tres-per-node    tres-per-socket   tres-per-step
 tres-per-task    UserID           UserName          Wait4Switch
 WCKey            WorkDir
 ```
+
+## sacctmgr
+
+Check group associations
+
+```
+sacctmgr show assoc where account=mygroup format=Account,Partition,User,QOS
+```

@@ -66,3 +66,23 @@
   inset: 0;
   z-index: 1;
 }
+
+
+  .md-nav--secondary {
+    background-color: #353434; 
+    color: #fab44a; 
+}
+
+.md-status--empty::after {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: 0.35em;
+  vertical-align: -0.15em;
+
+  background-color: currentColor;
+
+  -webkit-mask: url("../images/ghost-outline.svg") no-repeat center / contain;
+  mask: url("../images/ghost-outline.svg") no-repeat center / contain;
+}

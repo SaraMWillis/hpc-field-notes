@@ -51,7 +51,8 @@ extra_css = ["assets/stylesheets/extra.css"]
     ]},
     {"Container Recipes"= [
       "recipes/container_recipes/index.md",
-      {"Ansys" = "recipes/container_recipes/ansys/index.md"}
+      {"Ansys" = "recipes/container_recipes/ansys/index.md"},
+      {"Miscellaneous" = "recipes/container_recipes/miscellaneous/index.md"}
       ]},
     {"Module Recipes" = "recipes/module_recipes/index.md"}
    ]},
@@ -346,3 +347,6 @@ combine_header_slug = true
 [project.markdown_extensions.pymdownx.tasklist]
 custom_checkbox = true
 [project.markdown_extensions.pymdownx.tilde]
+
+[project.extra.status]
+empty = "Someone needs to get on it and add something here..."

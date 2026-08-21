@@ -92,5 +92,3 @@ INCS       += -I$(HDF5_ROOT)/include
 #CXXFLAGS_ML = -O3 -std=c++17 -Wall
 #INCLUDE_ML  =
 ```
-
-Installation of VASP 6.3.2 

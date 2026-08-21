@@ -105,7 +105,7 @@ I used that to build the relevant environment and forced MKL to downgrade to 202
 (esmfold-env) [lookitsme@r7u02n1 openfold]$ pip install 'openfold @ git+https://github.com/aqlaboratory/openfold.git@4b41059694619831a7db195b7e0988fc4ff3a307'
 (esmfold-env) [lookitsme@r7u02n1 openfold]$ micromamba install matplotlib
 (esmfold-env) [lookitsme@r7u02n1 openfold]$ micromamba install --channel=conda-forge libxcrypt
-(esmfold-env) [lookitsme@r7u02n1 openfold]$ export CPATH=/groups/sarawillis/SOFTWARE/micromamba/envs/esmfold-env/include/
+(esmfold-env) [lookitsme@r7u02n1 openfold]$ export CPATH=/groups/SOFTWARE/micromamba/envs/esmfold-env/include/
 (esmfold-env) [lookitsme@r7u02n1 openfold]$ pip install biotite
 ```
 
@@ -188,4 +188,149 @@ gave
 ```console title="ESM Fold test on a GPU node"
 (esmfold-env) [lookitsme@r5u15n1 openfold]$ python3 test.py 
 88.28930830039526
+```
+
+## ProteinMPNN
+
+```console
+[lookitsme@r7u03n2 contrib]$ git clone https://github.com/dauparas/ProteinMPNN.git
+[lookitsme@r7u03n2 contrib]$ cd ProteinMPNN
+[lookitsme@r7u03n2 ProteinMPNN]$ micromamba create --prefix=$PWD/env/ProteinMPNN python=3.7
+[lookitsme@r7u03n2 ProteinMPNN]$ micromamba activate $PWD/$ProteinMPNN/env/ProteinMPNN
+(ProteinMPNN) [lookitsme@r7u03n2 ProteinMPNN]$ micromamba install -c "nvidia/label/cuda-11.3.1" cuda-toolkit
+(ProteinMPNN) [lookitsme@r7u03n2 ProteinMPNN]$ micromamba install pytorch::pytorch=1.12.*
+(ProteinMPNN) [lookitsme@r7u03n2 mpnn_example]$ micromamba install numpy
+(ProteinMPNN) [lookitsme@r7u03n2 mpnn_example]$ micromamba install "mkl=2022.0"
+```
+
+To note, the `mkl` installation was required to fix
+
+```
+ImportError: /contrib/ProteinMPNN/env/ProteinMPNN/lib/python3.7/site-packages/torch/lib/libtorch_cpu.so: undefined symbol: iJIT_NotifyEvent
+```
+
+To test:
+
+```bash
+#!/bin/bash
+
+micromamba activate mlfold
+
+folder_with_pdbs="/contrib/ProteinMPNN/inputs/PDB_monomers/pdbs/"
+
+output_dir="/xdisk/lookitsme/TICKETS/mpnn_example/output"
+
+path_for_parsed_chains=$output_dir"/parsed_pdbs.jsonl"
+
+python /contrib/ProteinMPNN/helper_scripts/parse_multiple_chains.py --input_path=$folder_with_pdbs --output_path=$path_for_parsed_chains
+
+python /contrib/ProteinMPNN/protein_mpnn_run.py \
+        --jsonl_path $path_for_parsed_chains \
+        --out_folder $output_dir \
+        --num_seq_per_target 2 \
+        --sampling_temp "0.1" \
+        --seed 37 \
+        --batch_size 1
+```
+
+## RFDiffusion
+
+This particular install had the issue of the historical versions of PyTorch specified in the environment requirements pulling the CPU-only versions.
+
+https://github.com/RosettaCommons/RFdiffusion
+
+```bash
+git clone https://github.com/RosettaCommons/RFdiffusion.git
+cd RFdiffusion
+mkdir models && cd models
+wget http://files.ipd.uw.edu/pub/RFdiffusion/6f5902ac237024bdd0c176cb93063dc4/Base_ckpt.pt
+wget http://files.ipd.uw.edu/pub/RFdiffusion/e29311f6f1bf1af907f9ef9f44b8328b/Complex_base_ckpt.pt
+wget http://files.ipd.uw.edu/pub/RFdiffusion/60f09a193fb5e5ccdc4980417708dbab/Complex_Fold_base_ckpt.pt
+wget http://files.ipd.uw.edu/pub/RFdiffusion/74f51cfb8b440f50d70878e05361d8f0/InpaintSeq_ckpt.pt
+wget http://files.ipd.uw.edu/pub/RFdiffusion/76d00716416567174cdb7ca96e208296/InpaintSeq_Fold_ckpt.pt
+wget http://files.ipd.uw.edu/pub/RFdiffusion/5532d2e1f3a4738decd58b19d633b3c3/ActiveSite_ckpt.pt
+wget http://files.ipd.uw.edu/pub/RFdiffusion/12fc204edeae5b57713c5ad7dcb97d39/Base_epoch8_ckpt.pt
+wget http://files.ipd.uw.edu/pub/RFdiffusion/f572d396fae9206628714fb2ce00f72e/Complex_beta_ckpt.pt
+wget http://files.ipd.uw.edu/pub/RFdiffusion/1befcb9b28e2f778f53d47f18b7597fa/RF_structure_prediction_weights.pt
+cd ..
+micromamba env create -f env/SE3nv.yml --prefix=$PWD/env/SE3nv
+micromamba activate $PWD/env/SE3nv
+cd env/SE3Transformer
+pip install --no-cache-dir -r requirements.txt
+python setup.py install
+cd ../.. 
+pip install -e . 
+```
+
+Then, to patch the pytorch issues:
+
+```console
+(SE3nv) [lookitsme@r7u25n1 RFdiffusion]$ python -c "import torch; print(torch.__version__); print(torch.version.cuda); print(torch.cuda.is_available())"
+1.9.1.post3
+None
+False
+(SE3nv) [lookitsme@r7u25n1 RFdiffusion]$ python -m pip uninstall -y torch torchvision torchaudio
+Found existing installation: torch 1.9.1.post3
+Uninstalling torch-1.9.1.post3:
+  Successfully uninstalled torch-1.9.1.post3
+Found existing installation: torchvision 0.15.2a0
+Uninstalling torchvision-0.15.2a0:
+  Successfully uninstalled torchvision-0.15.2a0
+Found existing installation: torchaudio 0.9.0a0+a85b239
+Uninstalling torchaudio-0.9.0a0+a85b239:
+  Successfully uninstalled torchaudio-0.9.0a0+a85b239
+(SE3nv) [lookitsme@r7u25n1 RFdiffusion]$ micromamba remove pytorch torchvision torchaudio
+(SE3nv) [lookitsme@r7u25n1 RFdiffusion]$ pip install \
+    torch==1.9.1+cu111 \
+    torchvision==0.10.1+cu111 \
+    torchaudio==0.9.1 \
+    -f https://download.pytorch.org/whl/torch_stable.html
+```
+
+then, to finish:
+
+```bash
+(SE3nv) [lookitsme@r7u03n2 RFdiffusion]$ tar -xvf examples/ppi_scaffolds_subset.tar.gz -C examples/
+(SE3nv) [lookitsme@r7u03n2 RFdiffusion]$ ln -s $PWD/config $PWD/env/SE3nv/config
+```
+
+## EMSoft
+
+```bash
+git clone --recursive https://github.com/EMsoft-org/EMsoftSuperbuild.git
+export SDK_DIR=$PWD/EMsoft_SDK
+mkdir Debug && cd Debug
+cmake -DEMsoft_SDK=$SDK_DIR -DCMAKE_BUILD_TYPE=Debug ..
+make -j
+mkdir ../Release && cd ../Release
+cmake -DEMsoft_SDK=$SDK_DIR -DCMAKE_BUILD_TYPE=Release ..
+cd ../..
+git clone --recursive https://github.com/EMsoft-org/EMsoftData.git
+export DATADIR=$PWD/EMsoftData
+git clone --recursive https://github.com/EMsoft-org/EMsoft.git
+cd EMsoft
+mkdir EMsoftBuild
+cd EMsoftBuild/
+mkdir Release && cd Release
+module load cuda12
+cmake -DCMAKE_BUILD_TYPE=Release -DEMsoft_SDK=$SDK_DIR -DOpenCL_INCLUDE_DIR=/opt/ohpc/pub/apps/cuda12/12.5/targets/x86_64-linux/include -DOpenCL_LIBRARY=/opt/ohpc/pub/apps/cuda12/12.5/targets/x86_64-linux/lib/libOpenCL.so -DEMsoftData_Dir=$DATADIR ../../
+make -j
+mkdir ../Debug && cd ../Debug
+cmake -DCMAKE_BUILD_TYPE=Debug -DEMsoft_SDK=$SDK_DIR -DOpenCL_INCLUDE_DIR=/opt/ohpc/pub/apps/cuda12/12.5/targets/x86_64-linux/include -DOpenCL_LIBRARY=/opt/ohpc/pub/apps/cuda12/12.5/targets/x86_64-linux/lib/libOpenCL.so -DEMsoftData_Dir=$DATADIR ../../
+```
+
+## Intel NCO
+
+```bash
+module purge
+module load intel
+module load phdf5 netcdf
+module load libaec antlr gsl
+tar xvzvf 5.3.1.tar.gz
+cd nco-5.3.1/
+export CC=$(which icx)
+export CXX=$(which icpx)
+export CPPFLAGS="-I/usr/include/udunits2 $CPPFLAGS"
+./configure --enable-gsl --enable-udunits2 --includedir=/usr/include/udunits2 --prefix=/opt/ohpc/admin/UAbuild/nco-intel/INSTALL
+make -j4
 ```

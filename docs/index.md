@@ -4,7 +4,7 @@ icon: material/home
 
 # HPC Field Notes
 
-<img class="img-right" src="assets/images/hpc_field_notes.png" width="300px" style="margin: 10px;">
+<img class="img-right" src="assets/images/HPC-FIELD-NOTES.png" width="300px" style="margin: 10px;">
 
 ## What exactly is this?
 
@@ -61,6 +61,10 @@ This site functions as an informal collection of notes, recipes, debugging, and 
 
 </div>
 
+
 ## Who are you?
+
+<img class="img-right" src="assets/images/hpc-dg.png" width="500px" style="margin: 10px;">
+
 
 I'm Sara. I work in HPC facilitation, assisting researchers with running HPC workloads. Most of my time is spent breaking my environment, figuring out how other people broke their environment, coming up with HPC pipelines, debugging, software installations, writing documentation, and writing scripts for system usability. This can involve a lot of head banging and weird, hyper-specific solutions that possibly may never come up again. Or maybe they will. Which is why I'm documenting them here. Once you've solved a problem where you had to go spelunking and the only mention of your error that you could find was in a 15-year-old StackOverflow thread where someone said "solved it" with no follow up, that's a journey you don't want to take again. And sometimes you should be a good samaritan and [post your solutions](https://github.com/hhoeflin/hdf5r/issues/132#issuecomment-1122726294) :material-emoticon-sad-outline:

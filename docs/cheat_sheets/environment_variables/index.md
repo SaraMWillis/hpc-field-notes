@@ -2,5 +2,5 @@
 status: empty
 ---
 
-# Slurm
+# Environment Variables
 

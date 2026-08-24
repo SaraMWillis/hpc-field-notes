@@ -23,7 +23,7 @@ extra_css = ["assets/stylesheets/extra.css"]
    {"Field Notes" = [
     "field_notes/index.md",
     {"Debugging" = [
-    "field_notes/debugging/index.md",
+"field_notes/debugging/index.md",
     {"Login Woes" = "field_notes/debugging/login_woes/index.md"}
     ]},
     {"Installations" = "field_notes/installations/index.md"},
@@ -40,21 +40,12 @@ extra_css = ["assets/stylesheets/extra.css"]
     {"VASP" = "software/vasp/index.md"},
     {"Gaussian" = "software/gaussian/index.md"},
     {"Gromacs" = "software/gromacs/index.md"},
-    {"NAMD" = "software/namd/index.md"}
+    {"NAMD" = "software/namd/index.md"},
+    {"Miscellaneous" = "software/miscellaneous/index.md"}
    ]},
-   {"Recipes" = [
-    "recipes/index.md",
-    {"Build Recipes"= [
-      "recipes/build_recipes/index.md",
-      {"VASP" = "recipes/build_recipes/vasp/index.md"},
-      {"Miscellaneous" = "recipes/build_recipes/miscellaneous/index.md"}
-    ]},
-    {"Container Recipes"= [
-      "recipes/container_recipes/index.md",
-      {"Ansys" = "recipes/container_recipes/ansys/index.md"},
-      {"Miscellaneous" = "recipes/container_recipes/miscellaneous/index.md"}
-      ]},
-    {"Module Recipes" = "recipes/module_recipes/index.md"}
+   {"How To" = [
+    "how_to/index.md",
+    {"VS Code" = "how_to/vs_code/index.md"}
    ]},
    {"Examples" = [
     "examples/index.md",
@@ -67,6 +58,8 @@ extra_css = ["assets/stylesheets/extra.css"]
    {"Cheat Sheets" = [
     "cheat_sheets/index.md",
     {"Apptainer" = "cheat_sheets/apptainer/index.md"},
+    {"Compiler Flags" = "cheat_sheets/compiler_flags/index.md"},
+    {"Environment Variables" = "cheat_sheets/environment_variables/index.md"},
     {"Git" = "cheat_sheets/git/index.md"},
     {"Linux" = "cheat_sheets/linux/index.md"},
     {"MPI" = "cheat_sheets/mpi/index.md"},
@@ -74,9 +67,6 @@ extra_css = ["assets/stylesheets/extra.css"]
    ]},
    {"Reference" = [
     "reference/index.md",
-    {"Cluster Quirks" = "reference/cluster_quirks/index.md"},
-    {"Compiler Flags" = "reference/compiler_flags/index.md"},
-    {"Environment Variables" = "reference/environment_variables/index.md"},
     {"Useful Links" = "reference/useful_links/index.md"},
     {"Zensical" = "reference/zensical/index.md"}
    ]}

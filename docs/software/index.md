@@ -2,7 +2,9 @@
 icon: material/floppy
 ---
 
-# Software
+<img class="hero-image" src="./images/software.png" width="100%" style="margin: 10px;">
+
+#
 
 <div class="grid cards" markdown>
 

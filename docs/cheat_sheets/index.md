@@ -36,5 +36,9 @@ icon: material/lightning-bolt-outline
 
     Notes on things I am constantly forgetting or needing to look up in the SchedMD docs. 
 
+-  [__Zensical__](./zensical/)
 
+   ---
+
+   Notes on all things Zensical
 </div>

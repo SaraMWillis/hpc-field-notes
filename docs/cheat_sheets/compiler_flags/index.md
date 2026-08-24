@@ -2,5 +2,4 @@
 status: empty
 ---
 
-# Slurm
-
+# Compiler Flags

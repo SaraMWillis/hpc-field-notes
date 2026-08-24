@@ -1,6 +1,8 @@
 # Miscellaneous Software
 
-## ESMFold
+## Installations
+
+### ESMFold
 
 * Cuda Toolkit Info: [https://anaconda.org/channels/nvidia/packages/cuda-toolkit/overview](https://anaconda.org/channels/nvidia/packages/cuda-toolkit/overview)
 * Git repo: [https://github.com/facebookresearch/ESM](https://github.com/facebookresearch/ESM#esmfold)
@@ -190,7 +192,7 @@ gave
 88.28930830039526
 ```
 
-## ProteinMPNN
+### ProteinMPNN
 
 ```console
 [lookitsme@r7u03n2 contrib]$ git clone https://github.com/dauparas/ProteinMPNN.git
@@ -233,7 +235,7 @@ python /contrib/ProteinMPNN/protein_mpnn_run.py \
         --batch_size 1
 ```
 
-## RFDiffusion
+### RFDiffusion
 
 This particular install had the issue of the historical versions of PyTorch specified in the environment requirements pulling the CPU-only versions.
 
@@ -294,7 +296,7 @@ then, to finish:
 (SE3nv) [lookitsme@r7u03n2 RFdiffusion]$ ln -s $PWD/config $PWD/env/SE3nv/config
 ```
 
-## EMSoft
+### EMSoft
 
 ```bash
 git clone --recursive https://github.com/EMsoft-org/EMsoftSuperbuild.git
@@ -319,7 +321,7 @@ mkdir ../Debug && cd ../Debug
 cmake -DCMAKE_BUILD_TYPE=Debug -DEMsoft_SDK=$SDK_DIR -DOpenCL_INCLUDE_DIR=/opt/ohpc/pub/apps/cuda12/12.5/targets/x86_64-linux/include -DOpenCL_LIBRARY=/opt/ohpc/pub/apps/cuda12/12.5/targets/x86_64-linux/lib/libOpenCL.so -DEMsoftData_Dir=$DATADIR ../../
 ```
 
-## Intel NCO
+### Intel NCO
 
 ```bash
 module purge
@@ -333,4 +335,26 @@ export CXX=$(which icpx)
 export CPPFLAGS="-I/usr/include/udunits2 $CPPFLAGS"
 ./configure --enable-gsl --enable-udunits2 --includedir=/usr/include/udunits2 --prefix=/opt/ohpc/admin/UAbuild/nco-intel/INSTALL
 make -j4
+```
+
+
+
+## Apptainer Recipes
+
+### AddaxAI
+
+```apptainer title="AddaxAI.recipe"
+Bootstrap: docker
+From: ubuntu:24.04
+
+%post 
+  apt update -y
+  apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev git -y 
+  apt-get update && \
+  apt-get install -y libgl1 libglib2.0-0
+  wget https://petervanlunteren.github.io/AddaxAI/install_files/linux/install.command
+  sed -i 's/\bsudo\b//g' install.command
+  chmod +x install.command
+  mkdir ~/Desktop
+  ./install.command
 ```

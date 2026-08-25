@@ -62,5 +62,6 @@ icon: material/binoculars
     A love hate relationship.
 
 
-
 </div>
+
+<img class="hero-image" src="./images/field-notes-dg.png" width="100%" style="margin: 10px;">

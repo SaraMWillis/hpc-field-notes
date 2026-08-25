@@ -13,6 +13,8 @@ icon: material/home
 
 This site functions as an informal collection of notes, recipes, debugging, and other stuff from working with high-performance computing systems. Some of these notes are polished. Some are essentially organized versions of hours of incomprehensible keyboard smashing. Basically, if I spent significant time figuring it out, I'm putting it here so Future Me doesn't hate Present Me.
 
+To note, this site is a personal collection of notes based on working with HPC systems. This is not official documentation or policy for any institution or HPC service. 
+
 
 ## What's here?
 
@@ -58,6 +60,12 @@ This site functions as an informal collection of notes, recipes, debugging, and 
     ---
 
     Links to external references, links I'm constantly needing to look up, and whatever else I need to remember.
+
+-   :material-palette:{ .lg .middle } __[Personal Projects](./personal_projects/)__
+
+    ---
+
+    Coding projects I'm likely in the middle of and have been on pause for somewhere between months and years. Most of these are usability tools for making clusters running Slurm more accessible. The general issue I have is finding time to refactor the code...
 
 </div>
 

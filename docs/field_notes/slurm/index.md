@@ -49,3 +49,16 @@ The one thing that still bugs me is that, in the example shown above, the lower 
     |`partition_job_depth`|`200`|Specifies how many jobs are tested in any single partition, default value is 0 (no limit). Ours is set to 200, so each scheduling cycle, only the top 200 jobs are considered.|
     |`bf_interval`|`300`|How frequently, in seconds, backfill is run. So jobs are evaluated on our system every 5 minutes|
     |`bf_max_job_user`|`10`|How many jobs per user are considered for backfill across all partitions|
+
+
+## Invalid qos specification
+
+If a user gets this error and there are no typos in their batch directives, first check that they are actually associated with the account they're trying to use. If so, try checking:
+
+```
+sacctmgr show assoc user=<user>  format=account,partition,qos%50
+```
+
+If they have access to the QOS and Partition they're trying to use, you should see them listed in the output table. 
+
+If they are listed (and this is why I'm writing this note), it's possible the Slurm controller and accounting database may be out of sync. In some cases, restarting slurmctld and then running `scontrol reconfigure` has cleared the problem. This happens very intermittently and drives me crazy trying to figure out what's going on whenever it pops up. Hence the note.

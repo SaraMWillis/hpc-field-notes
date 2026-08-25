@@ -25,7 +25,7 @@ This site functions as an informal collection of notes, recipes, debugging, and 
 
     ---
 
-    The accumulated knowledge of working with HPC systems: debugging, installations, containers, SLURM, storage, networking, performance, and remote development.
+    Notes on technical details that go beyond simple commands, how-to guides, examples, cheat sheets, and the like. Things like explanations of Slurm backfill, debugging `cmake` installations, and other knowledge gained through working with Linux and HPC systems. 
 
 
 -   :material-floppy:{ .lg .middle } __[Software](./software/)__
@@ -35,13 +35,13 @@ This site functions as an informal collection of notes, recipes, debugging, and 
     Notes for building, installing, configuring, and troubleshooting scientific software.
 
 
--   :material-chef-hat:{ .lg .middle } __[Recipes](./recipes/)__
+-   :material-tools:{ .lg .middle } __[How To](./how_to/)__
 
     ---
 
-    Build recipes, container recipes, and module recipes.
+    Explanations on how to accomplish various tasks. For example, how can I configure VS Code (running locally) to connect to an HPC cluster, hopping through an intermediate bastion host, to launch and connect to a Slurm job on one of the cluster's compute nodes?
 
--   :material-chef-hat:{ .lg .middle } __[Recipes](./examples/)__
+-   :material-chef-hat:{ .lg .middle } __[Examples](./examples/)__
 
     ---
 
@@ -57,7 +57,7 @@ This site functions as an informal collection of notes, recipes, debugging, and 
 
     ---
 
-    The facts and details worth keeping close: cluster quirks, compiler flags, environment variables, useful links, and other things Future Me shouldn't have to rediscover.
+    Links to external references, links I'm constantly needing to look up, and whatever else I need to remember.
 
 </div>
 
@@ -67,4 +67,14 @@ This site functions as an informal collection of notes, recipes, debugging, and 
 <img class="hero-image" src="assets/images/hpc-dg.png" width="500px" style="margin: 10px;">
 
 
-I'm Sara. I work in HPC facilitation, assisting researchers with running HPC workloads. Most of my time is spent breaking my environment, figuring out how other people broke their environment, coming up with HPC pipelines, debugging, software installations, writing documentation, and writing scripts for system usability. This can involve a lot of head banging and weird, hyper-specific solutions that possibly may never come up again. Or maybe they will. Which is why I'm documenting them here. Once you've solved a problem where you had to go spelunking and the only mention of your error that you could find was in a 15-year-old StackOverflow thread where someone said "solved it" with no follow up, that's a journey you don't want to take again. And sometimes you should be a good samaritan and [post your solutions](https://github.com/hhoeflin/hdf5r/issues/132#issuecomment-1122726294) :material-emoticon-sad-outline:
+I'm Sara. I work in HPC facilitation. I assist researchers with running HPC workloads at an academic institution and spend most of my time breaking my environment, figuring out how other people broke their environment, coming up with HPC pipelines, debugging, swearing at software installations, writing documentation, and writing scripts for system usability. This inevitably involves a lot of head banging and weird, hyper-specific solutions that rarely come up again. But sometimes they do, and then I have to dig through a decade's worth of ancient emails with the inkling of "wtf, I know I've seen that error before." Or maybe I've created 10,000 open unnamed plain text files and the solution lives in one of them (I'm begging myself, stop doing this). I've hit a point where enough of these experiences have catalyzed this site's creation. My email is an okay-ish archival tool. Our public docs provide comprehensive general knowledge but isn't hyper-specific/niche enough.  My plain text document habit is frankly unacceptable. So, this site is my proposed solution. And sometimes you should be a good samaritan and [post your solutions](https://github.com/hhoeflin/hdf5r/issues/132#issuecomment-1122726294) :material-emoticon-sad-outline:
+
+## A Note on This Site's Art
+
+The non-technical illustrations used on this site were created by the author with the [Tileset map editor](https://thorbjorn.itch.io/tiled) using game assets from the following artists (paid for). No AI was used.
+
+- [Computer Monitors by LiamRogersDeveloper](https://liamrogersdeveloper.itch.io/pixel-art-computer-crt-terminal-monitors)
+- [Office Furniture by Antea](https://stcrbcn.itch.io/furniture-office-set)
+- [Brackeys' Platformer Bundle by Brackeys](https://brackeysgames.itch.io/brackeys-platformer-bundle)
+- [Tiny RPG Character Asset Pack by Zerie](https://zerie.itch.io/tiny-rpg-character-asset-pack)
+- [Dark Dungeon by Raou](https://raou.itch.io/dark-dun)

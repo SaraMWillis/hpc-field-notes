@@ -4,7 +4,7 @@ icon: material/floppy
 
 <img class="hero-image" src="./images/software.png" width="100%" style="margin: 10px;">
 
-#
+<h1></h1>
 
 <div class="grid cards" markdown>
 
@@ -29,3 +29,5 @@ icon: material/floppy
     ---
 
 </div>
+
+<img class="hero-image" src="./images/software_dungeon.png" width="100%" style="margin: 10px;">

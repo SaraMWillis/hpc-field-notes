@@ -309,7 +309,7 @@ link = "https://sarawillis.bsky.social/"
 [project.markdown_extensions.footnotes]
 [project.markdown_extensions.md_in_html]
 [project.markdown_extensions.toc]
-permalink = true
+permalink = "🔎"
 [project.markdown_extensions.pymdownx.arithmatex]
 generic = true
 [project.markdown_extensions.pymdownx.betterem]

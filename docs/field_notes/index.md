@@ -2,7 +2,9 @@
 icon: material/binoculars
 ---
 
-# Field Notes
+<img class="hero-image" src="./images/field-notes.png" width="100%" style="margin: 10px;">
+
+<h1></h1>
 
 <div class="grid cards" markdown>
 
@@ -38,7 +40,7 @@ icon: material/binoculars
 
     ---
 
-    Once, I saw an array job with hundreds of elements that was opening and shutting PDFs in a while loop. "Where did the filesystem go?"
+    Please don't open and shut your PDFs in while loops.
 
 
 -   :material-server-network:{ .lg .middle } __[Networking](./networking/)__

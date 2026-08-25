@@ -33,6 +33,11 @@
   color: rgb(233, 233, 233);
 }
 
+.md-typeset blockquote {
+  color: rgb(252, 213, 174);
+
+}
+
 
 .img-right, 
 .ood-form,

@@ -5,6 +5,7 @@ icon: material/binoculars
 <img class="hero-image" src="./images/field-notes.png" width="100%" style="margin: 10px;">
 
 <h1></h1>
+<br style="clear: both;">
 
 <div class="grid cards" markdown>
 

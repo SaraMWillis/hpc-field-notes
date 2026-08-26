@@ -5,6 +5,7 @@ icon: material/floppy
 <img class="hero-image" src="./images/software.png" width="100%" style="margin: 10px;">
 
 <h1></h1>
+<br style="clear: both;">
 
 <div class="grid cards" markdown>
 
@@ -30,3 +31,6 @@ icon: material/floppy
 
 </div>
 
+<br style="clear: both;">
+
+<img class="hero-image" src="./images/software_dungeon.png" width="100%" style="margin: 10px;">

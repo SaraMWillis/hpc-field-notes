@@ -64,4 +64,6 @@ icon: material/binoculars
 
 </div>
 
+<br style="clear: both;">
+
 <img class="hero-image" src="./images/field-notes-dg.png" width="100%" style="margin: 10px;">

@@ -30,4 +30,6 @@ icon: material/floppy
 
 </div>
 
+<br style="clear: both;">
+
 <img class="hero-image" src="./images/software_dungeon.png" width="100%" style="margin: 10px;">

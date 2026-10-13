@@ -89,3 +89,31 @@ Check group associations
 ```
 sacctmgr show assoc where account=mygroup format=Account,Partition,User,QOS
 ```
+
+Show resource limits
+
+Update resource limits
+
+```bash
+sacctmgr update account $PARENT_ID set GrpTRES=cpu=${CPUS},gres/gpu=${GPUS},mem=${MEM}G
+```
+
+sacctmgr update account $PARENT_ID set GrpTRES=cpu=3290,gres/gpu=4,mem=16998G
+
+Find all system parent IDs 
+
+```bash
+sacctmgr --parsable2 show account format=Org | grep parent | sort -u
+```
+
+Find all user accounts associated with those parent IDs
+
+```bash
+sacctmgr show association where parent=$PARENT_ID --parsable2 --noheader format=Account
+```
+
+Find concurrent GPU limits associated with parent IDs:
+
+```bash
+sacctmgr --parsable2 show account $PARENT_ID withassoc format=GrpTRES --noheader
+```

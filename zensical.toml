@@ -41,6 +41,7 @@ extra_css = ["assets/stylesheets/extra.css"]
     {"VASP" = "software/vasp/index.md"},
     {"Gaussian" = "software/gaussian/index.md"},
     {"Gromacs" = "software/gromacs/index.md"},
+    {"LAMMPS" = "software/lammps/index.md"},
     {"NAMD" = "software/namd/index.md"},
     {"Miscellaneous" = "software/miscellaneous/index.md"}
    ]},
@@ -265,6 +266,9 @@ primary = "custom"
 #toggle.icon = "lucide/sun"
 #toggle.name = "Switch to dark mode"
 
+
+# [project.extra.tags]
+# Ripgrep = "ripgrep"
 
 
 # ----------------------------------------------------------------------------

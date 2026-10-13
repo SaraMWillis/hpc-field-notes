@@ -38,7 +38,7 @@ icon: material/lightning-bolt-outline
 
 -  [__Zensical__](./zensical/)
 
-   ---
+    ---
 
-   Notes on all things Zensical
+    Notes on all things Zensical
 </div>

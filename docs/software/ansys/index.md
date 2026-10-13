@@ -82,3 +82,101 @@ From: ubuntu:18.04
   export AWP_ROOT190=/INSTALL/v190
   export ANSYS_ROOT=$AWP_ROOT190
 ```
+
+## Runtime Issues
+
+### Fluent
+
+!!! tip "Ansys MPI"
+    Note: Ansys comes with it's own prepackaged MPI. As part of this process, I unloaded our OpenMPI module (which is loaded by default) to ensure there were no library mismatches.
+
+Below is an example of an MPI issue a user ran into when running ANSYS Fluent 2025 R1 on our servers:
+
+```console
+[user@<node> ANSYS]$ fluent 2ddp -g -t1 -i test.jou
+</path/to/fluent>/bin/fluent -r25.1.0 2ddp -g -t1 -i test.jou
+</path/to/fluent>/cortex/lnamd64/cortex.25.1.0 -f fluent -g -i test.jou (fluent "2ddp -pdefault  -host -r25.1.0 -t1 -mpi=intel -path</path/to/ansys>/25.1/v251/fluent -ssh")
+
+Opening input/output transcript to file "</path/to>/ANSYS/<output>.trn".
+Auto-Transcript Start Time:  10:47:11, 13 Oct 2026 
+</path/to/fluent>/bin/fluent -r25.1.0 2ddp -pdefault -host -t1 -mpi=intel -path</path/to/ansys>/25.1/v251/fluent -ssh -cx <node>:<port>:<port>
+Starting </path/to/fluent>/lnamd64/2ddp_host/fluent.25.1.0 host -cx node:<port>:<port> "(list (rpsetvar (QUOTE parallel/function) "fluent 2ddp -flux -node -r25.1.0 -t1 -pdefault -mpi=intel -ssh") (rpsetvar (QUOTE parallel/rhost) "") (rpsetvar (QUOTE parallel/ruser) "") (rpsetvar (QUOTE parallel/nprocs_string) "1") (rpsetvar (QUOTE parallel/auto-spawn?) #t) (rpsetvar (QUOTE parallel/trace-level) 0) (rpsetvar (QUOTE parallel/remote-shell) 1) (rpsetvar (QUOTE parallel/path) "</path/to/ansys/25.1/v251/fluent") (rpsetvar (QUOTE parallel/hostsfile) "") (rpsetvar (QUOTE gpuapp/devices) ""))"
+
+              Welcome to ANSYS Fluent 2025 R1
+
+              Copyright 1987-2025 ANSYS, Inc. All Rights Reserved.
+              Unauthorized use, distribution or duplication is prohibited.
+              This product is subject to U.S. laws governing export and re-export.
+              For full Legal Notice, see documentation.
+
+Build Time: Nov 26 2024 15:35:47 EST  Build Id: 10210  
+ 
+Connected License Server List:	<port>@<lic.server>
+
+*********************************************
+Info: Your license enables 4-way parallel execution.
+For faster simulations, please start the application with the appropriate parallel options.
+*********************************************
+
+
+     --------------------------------------------------------------
+     This is an academic version of ANSYS FLUENT. Usage of this product
+     license is limited to the terms and conditions specified in your ANSYS
+     license form, additional terms section.
+     --------------------------------------------------------------
+Host spawning Node 0 on machine "<node>" (unix).
+</path/to/fluent>/bin/fluent -r25.1.0 2ddp -flux -node -t1 -pdefault -mpi=intel -ssh -mport <internal_ip>:<internal_ip>:<port>:0
+Starting </path/to/fluent>/multiport/mpi/lnamd64/intel2021/bin/mpirun -f /tmp/fluent-appfile.<user>.<pid> -genv I_MPI_FABRICS shm -genv FLUENT_ARCH lnamd64 -genv I_MPI_DEBUG 0 -genv I_MPI_ADJUST_GATHERV 3 -genv I_MPI_ADJUST_ALLREDUCE 2 -genv I_MPI_PLATFORM auto -genv PYTHONHOME </path/to/fluent>/../../commonfiles/CPython/3_10/linx64/Release/python -genv FLUENT_PROD_DIR </path/to/fluent>/fluent25.1.0 -genv FLUENT_AFFINITY 0 -genv I_MPI_PIN enable -genv KMP_AFFINITY disabled -n 1 </path/to/fluent>/lnamd64/2ddp_node/fluent_mpi.25.1.0 node -mpiw intel -pic shmem -mport <internal_ip>:<internal_ip>:<port>:0
+[mpiexec@<node>] Error: Unable to run bstrap_proxy on <node> (pid <pid>, exit code 256)
+[mpiexec@<node>] poll_for_event (../../../../../src/pm/i_hydra/libhydra/demux/hydra_demux_poll.c:157): check exit codes error
+[mpiexec@<node>] HYD_dmx_poll_wait_for_proxy_event (../../../../../src/pm/i_hydra/libhydra/demux/hydra_demux_poll.c:206): poll for event error
+[mpiexec@<node>] HYD_bstrap_setup (../../../../../src/pm/i_hydra/libhydra/bstrap/src/intel/i_hydra_bstrap.c:1063): error waiting for event
+[mpiexec@<node>] Error setting up the bootstrap proxies
+[mpiexec@<node>] Possible reasons:
+[mpiexec@<node>] 1. Host is unavailable. Please check that all hosts are available.
+[mpiexec@<node>] 2. Cannot launch hydra_bstrap_proxy or it crashed on one of the hosts.
+[mpiexec@<node>]    Make sure hydra_bstrap_proxy is available on all hosts and it has right permissions.
+[mpiexec@<node>] 3. Firewall refused connection.
+[mpiexec@<node>]    Check that enough ports are allowed in the firewall and specify them with the I_MPI_PORT_RANGE variable.
+[mpiexec@<node>] 4. slurm bootstrap cannot launch processes on remote host.
+[mpiexec@<node>]    You may try using -bootstrap option to select alternative launcher.
+srun: error: Unable to create step for job <jobid>: Requested node configuration is not available
+
+Application is timed out, aborting ...
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+   Timed out in Fluent startup [600 seconds], aborting ... 
+
+   Check networks and computers to make sure they are available and healthy! 
+   If you believe the systems are good, you can wait longer by setting 
+     the environment variable in seconds as needed: 
+
+       FLUENT_START_COMPUTE_NODE_TIME_OUT 
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+
+
+
+</path/to/fluent>/bin/fluent: line 3111: <pid> Aborted                 (core dumped) $NO_RUN $CORTEX_PRE $EXE -f $FLUENT_PROD $CX_FLAGS "$CX_FUNCTION"
+```
+
+The issue turned out to be the `-ssh` bootstrap method. Fluent was launching processes with SSH, but was getting hung up on the interactive steps of password entry and:
+
+```console
+The authenticity of host '<node> (<ip>)' can't be established.
+ED25519 key fingerprint is <fingerprint>.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+```
+
+I was able to resolve the issue by setting up ssh keys:
+
+```console
+[<user>@<node>]$ ssh-keygen -t rsa
+[<user>@<node>]$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+```
+and then setting [strict host key checking](https://man.openbsd.org/ssh_config.5) to off in `~/.ssh/config`
+
+```
+Host *.<host>
+    StrictHostKeyChecking off
+```

@@ -96,3 +96,7 @@
   image-rendering: pixelated;
   float: right;
 }
+
+.links-table {
+  background-color: #353434; 
+}

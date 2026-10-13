@@ -1,4 +1,5 @@
 ---
+title: Software
 icon: material/floppy
 ---
 
@@ -26,6 +27,10 @@ icon: material/floppy
     ---
 
 -   :material-molecule:{ .lg .middle } __[NAMD](./namd/)__
+
+    ---
+
+-  :material-duck:{ .lg .middle } __[Miscellaneous](./miscellaneous)__
 
     ---
 

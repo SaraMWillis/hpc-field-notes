@@ -341,9 +341,9 @@ make -j4
 
 ## Apptainer Recipes
 
-### AddaxAI
+### [AddaxAI](https://addaxdatascience.com/addaxai/)
 
-```apptainer title="AddaxAI.recipe"
+```singularity title="AddaxAI.recipe"
 Bootstrap: docker
 From: ubuntu:24.04
 
@@ -357,4 +357,181 @@ From: ubuntu:24.04
   chmod +x install.command
   mkdir ~/Desktop
   ./install.command
+```
+
+### [ARB](http://www.arb-home.de/downloads.html)
+
+
+```apptainer title="arb.recipe"
+Bootstrap: docker
+FROM: ubuntu:18.04
+
+%post -c /bin/bash
+  set -e
+  apt update -y
+  apt-get update -y
+  DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true TZ=Etc/UTC apt-get -y install tzdata keyboard-configuration
+  apt-get install git pkgconf wget build-essential cmake libncurses5-dev libncursesw5-dev xutils-dev lynx libglib2.0-dev libgtk2.0-dev time xsltproc libboost-all-dev gnuplot libxpm-dev -y
+  apt-get install -y libmotif-dev transfig libxpm4 libtiff-dev libx11-dev libxext6 libxml2 libxml2 libxml2-dev libxtst6 libxt-dev libxslt-dev libreadline-dev libxaw7-dev -y
+  #apt-get install -y wget
+  apt update -y
+  apt install -y libxerces-c-dev xfig xterm 
+  
+  wget http://download.arb-home.de/release/latest/arb-7.0-source.tgz
+  tar xvf arb-7.0-source.tgz
+  cd arbsrc_18696
+  export ARBHOME=`pwd`
+  export PATH=$ARBHOME/bin:$PATH
+  export LD_LIBRARY_PATH=$ARBHOME/lib:$LD_LIBRARY_PATH 
+  set +e
+  make all
+  make all
+
+%environment
+  export ARBHOME=/arbsrc_18696
+  export PATH=$ARBHOME/bin:$PATH
+  export LD_LIBRARY_PATH=$ARBHOME/lib:$LD_LIBRARY_PATH
+```
+
+### CalFUSE
+
+```singularity
+Bootstrap: docker
+From: ubuntu:18.04
+
+%post
+  . /environment
+  SHELL=/bin/bash
+  
+  apt-get update
+  apt-get install -y wget git vim build-essential cmake pax libz-dev gfortran zlib1g-dev #lib64z1-dev
+  apt install -y zlib1g zlib1g-dev
+  #ldconfig -p -v | grep --color=auto zlib
+  wget https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/cfitsio-4.1.0.tar.gz
+  tar xzvf cfitsio-4.1.0.tar.gz
+  cd cfitsio-4.1.0
+  ./configure --prefix=/usr
+  make install
+  cd ..
+
+  # install zlib since clearly apt-get is not cooperating
+  wget https://zlib.net/zlib-1.2.12.tar.gz
+  tar xzvf zlib-1.2.12.tar.gz
+  cd zlib-1.2.12
+  ./configure --prefix=/usr
+  make install
+  cd .. 
+  export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
+  export INCLUDE=/usr/include:$INCLUDE
+  export PKG_CONFIG_PATH=/usr/lib/pkgconfig:$PKG_CONFIG_PATH
+  #export LDFLAGS="-L/cfitsio-4.1.0/lib -lz" $LDFLAGS
+  cd ..
+  wget https://archive.stsci.edu/pub/fuse/software/calfuse/cfv3.2.3.cala.tar.gz
+  wget https://archive.stsci.edu/pub/fuse/software/calfuse/cfv3.2.3.calg.tar.gz
+  wget https://archive.stsci.edu/pub/fuse/software/calfuse/cfv3.2.3.calz.tar.gz
+  wget https://archive.stsci.edu/pub/fuse/software/calfuse/cfv3.2.3.sw.tar.gz
+  tar xzvf cfv3.2.3.cala.tar.gz
+  tar xzvf cfv3.2.3.calg.tar.gz
+  tar xzvf cfv3.2.3.calz.tar.gz
+  tar xzvf cfv3.2.3.sw.tar.gz
+  cd v3.2/src
+
+  ./configure.linux64 
+  sed -i 's/LIBS=[^0-9]*-lc -lm -lnsl -ldl -lgfortran/LIBS=         -lc -lm -lnsl -ldl -lgfortran -lz/g' Makefile
+  sed -i 's/libs:[^0-9]*libcfitsio libsla libfuse/libs:         libcfitsio libsla libfuse libz/g' Makefile
+  sed -i 's/OPT=[^0-9]*-Wall -g -DCFORTRAN -Dg77Fortran -Df2cFortran/OPT=         -Wall -g -DCFORTRAN -Dg77Fortran -Df2cFortran -lz/g' Makefile
+  sed -i 's/LIBS=[^0-9]*-lc -lm -lnsl -ldl -lgfortran/LIBS=         -lc -lm -lnsl -ldl -lgfortran -lz/g' fes/Makefile
+  sed -i 's/LIBS=[^0-9]*-lc -lm -lnsl -ldl -lgfortran/LIBS=         -lc -lm -lnsl -ldl -lgfortran -lz/g' fes/Makefile.Linux64
+  sed -i 's/LIBS=[^0-9]*-lc -lm -lnsl -ldl -lgfortran/LIBS=         -lc -lm -lnsl -ldl -lgfortran -lz/g' fuv/Makefile
+  sed -i 's/LIBS=[^0-9]*-lc -lm -lnsl -ldl -lgfortran/LIBS=         -lc -lm -lnsl -ldl -lgfortran -lz/g' fuv/Makefile.Linux64
+  sed -i 's/LIBS=[^0-9]*-lc -lm -lnsl -ldl -lgfortran -lcfitsio/LIBS=         -lc -lm -lnsl -ldl -lgfortran -lcfitsio -lz/g' analysis/Makefile
+  sed -i 's/LIBS=[^0-9]*-lc -lm -lnsl -ldl -lgfortran -lcfitsio/LIBS=         -lc -lm -lnsl -ldl -lgfortran -lcfitsio -lz/g' analysis/Makefile.Linux64
+  sed -i 's/LIBS=[^0-9]*-lc -lm -lnsl -ldl -lgfortran -lcfitsio/LIBS=         -lc -lm -lnsl -ldl -lgfortran -lcfitsio -lz/g' cal/jitter/Makefile
+  sed -i 's/LIBS=[^0-9]*-lc -lm -lnsl -ldl -lgfortran -lcfitsio/LIBS=         -lc -lm -lnsl -ldl -lgfortran -lcfitsio -lz/g' cal/jitter/Makefile.Linux64
+  cat fes/Makefile | grep LIBS
+  cat fuv/Makefile | grep LIBS
+  make install
+  sed -i 's#CF_DIR="${HOME}/calfuse"#CF_DIR=""#g' /v3.2/bin/cfsetup.sh
+  rm -f /v3.2/bin/calfuse
+  ln -sf /v3.2/bin/calfuse.sh /v3.2/bin/calfuse
+  sed -i '/rm/d' /v3.2/bin/cfsetup.sh
+  sed -i '/ln/d' /v3.2/bin/cfsetup.sh
+
+%environment
+  export CF_DIR="" # <-- installed under /
+  export CF_VERSION="v3.2"
+  export PATH=${CF_DIR}/${CF_VERSION}/bin:$PATH
+  export LD_LIBRARY_PATH="${CF_DIR}/${CF_VERSION}/lib:${LD_LIBRARY_PATH}"
+  export DYLD_LIBRARY_PATH="${CF_DIR}/${CF_VERSION}/lib:${DYLD_LIBRARY_PATH}"
+  export CF_CALDIR="${CF_DIR}/${CF_VERSION}/calfiles"
+  export CF_PARMDIR="${CF_DIR}/${CF_VERSION}/parmfiles"
+  export CF_IDLDIR="${CF_DIR}/${CF_VERSION}/idl"
+  export CF_HISTDIR=`pwd`
+  
+  export INCLUDE=/v3.2/include:$INCLUDE
+  export PKG_CONFIG_PATH=/v3.2/lib/pkgconfig:$PKG_CONFIG_PATH
+  source /v3.2/bin/cfsetup.sh 
+```
+
+### eMolFrag
+
+```singularity title="emolfrag.recipe"
+Bootstrap: docker
+From: ubuntu:22.04
+
+%files
+  kcombu-src-20200414.tar.gz
+
+
+%post
+  apt update -y
+  apt-get update -y
+  apt-get install git wget build-essential cmake -y
+
+  # INSTALL OPENBABEL
+  wget https://github.com/openbabel/openbabel/archive/refs/tags/openbabel-3-1-1.tar.gz
+  tar xzvf openbabel-3-1-1.tar.gz
+  cd openbabel-openbabel-3-1-1
+  mkdir build
+  cd build
+  cmake ..
+  make -j4
+  make install
+  cd ../..
+  rm openbabel-3-1-1.tar.gz
+  
+  # INSTALL CONDA WITH RDKIT
+  wget https://repo.anaconda.com/archive/Anaconda3-2024.02-1-Linux-x86_64.sh
+  bash Anaconda3-2024.02-1-Linux-x86_64.sh -bfp /usr/local
+  conda config --file /.condarc --add channels defaults
+  conda config --file /.condarc --add channels conda-forge
+  conda update conda
+  conda install python=3.11
+  conda install -c conda-forge rdkit
+  rm Anaconda3-2024.02-1-Linux-x86_64.sh
+
+  # INSTALL kcombu. THE SOURCE TAR FILE NEEDS TO EXIST PRIOR TO BUILDING THIS CONTAINER
+  tar xzvf kcombu-src-20200414.tar.gz
+  cd src 
+  make -f Makefile.pkcombu
+  cd ..
+  mv pkcombu /usr/local/bin
+
+  # INSTALL EMOLFRAG
+  git clone https://github.com/liutairan/eMolFrag.git
+  cd eMolFrag/eMolFrag_2017_06_19_01/
+  echo "/eMolFrag/eMolFrag_2017_06_19_01/" > PathConfigure.log
+  echo "/usr/local/bin/pkcombu" >> PathConfigure.log
+
+
+%help
+  - Installation of openbabel, conda, rdkit, pkcombu, and eMolFrag
+  - pkcombu can be found under /usr/local/bin
+  - eMolFrag can be found under /eMolFrag with the various python scripts
+    stored under /eMolFrag/eMolFrag_2017_06_19_01/
+  - The environment variable EMOLFRAG is set to the scripts path for ease of use
+
+%environment 
+  EMOLFRAG=/eMolFrag/eMolFrag_2017_06_19_01/
+  export EMOLFRAG
 ```

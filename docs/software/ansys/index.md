@@ -9,7 +9,7 @@ Subtitle: EOL software dependent on an EOL OS built on an unsupported OS
 !!! note
     Replace `<PORT>` and `<LICENSE_SERVER>` with the license server information appropriate for your environment. Replace `</PATH/TO/Ansys19.0>` with the path to your local Ansys 19.0 installation files. 
 
-```
+```singularity
 Bootstrap: docker
 From: ubuntu:18.04
 
@@ -179,4 +179,14 @@ and then setting [strict host key checking](https://man.openbsd.org/ssh_config.5
 ```
 Host *.<host>
     StrictHostKeyChecking off
+```
+
+I also had to set `export I_MPI_HYDRA_BOOTSTRAP=ssh` based on [this Ansys support thread](https://innovation.ansys.com/public/forum/topics/fluent-fails-with-intel-mpi-protocol-on-2-nodes).
+
+## Exiting from Interactive Prompt
+
+Since ++ctrl+d++ doesn't work... if you get stuck after starting Ansys on the command line and can't get back to your regular shell:
+
+```
+> /exit
 ```

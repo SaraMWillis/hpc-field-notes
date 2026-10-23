@@ -77,12 +77,11 @@ To note, this site is a personal collection of notes based on working with HPC s
 
 I'm Sara. I work in HPC facilitation. I assist researchers with running HPC workloads at an academic institution and spend most of my time breaking my environment, figuring out how other people broke their environment, coming up with HPC pipelines, debugging, swearing at software installations, writing documentation, and writing scripts for system usability. This inevitably involves a lot of head banging and weird, hyper-specific solutions that rarely come up again. But sometimes they do, and then I have to dig through a decade's worth of ancient emails with the inkling of "wtf, I know I've seen that error before." Or maybe I've created 10,000 open unnamed plain text files and the solution lives in one of them (I'm begging myself, stop doing this). I've hit a point where enough of these experiences have catalyzed this site's creation. My email is an okay-ish archival tool. Our public docs provide comprehensive general knowledge but isn't hyper-specific/niche enough.  My plain text document habit is frankly unacceptable. So, this site is my proposed solution. And sometimes you should be a good samaritan and [post your solutions](https://github.com/hhoeflin/hdf5r/issues/132#issuecomment-1122726294) :material-emoticon-sad-outline:
 
-## A Note on This Site's Art
+<hr>
 
-The non-technical illustrations used on this site were created by the author with the [Tileset map editor](https://thorbjorn.itch.io/tiled) using game assets from the following artists (paid for). No AI was used.
-
-- [Computer Monitors by LiamRogersDeveloper](https://liamrogersdeveloper.itch.io/pixel-art-computer-crt-terminal-monitors)
-- [Office Furniture by Antea](https://stcrbcn.itch.io/furniture-office-set)
-- [Brackeys' Platformer Bundle by Brackeys](https://brackeysgames.itch.io/brackeys-platformer-bundle)
-- [Tiny RPG Character Asset Pack by Zerie](https://zerie.itch.io/tiny-rpg-character-asset-pack)
-- [Dark Dungeon by Raou](https://raou.itch.io/dark-dun)
+  <footer style="color: light grey;">
+    <small>
+      A Note on This Site's Art: The non-technical illustrations used on this site were created by the author with the <a href="https://thorbjorn.itch.io/tiled">Tileset map editor</a> using game assets from the following artists (paid for). No AI was used.<br>
+    <a href="https://liamrogersdeveloper.itch.io/pixel-art-computer-crt-terminal-monitors">Computer Monitors by LiamRogersDeveloper</a> | <a href="https://stcrbcn.itch.io/furniture-office-set">Office Furniture by Antea</a> | <a href="https://zerie.itch.io/tiny-rpg-character-asset-pack">Tiny RPG Character Asset Pack by Zerie</a> | <a href="https://raou.itch.io/dark-dun">Dark Dungeon by Raou</a> | <a href="https://brackeysgames.itch.io/brackeys-platformer-bundle">Brackeys' Platformer Bundle by Brackeys</a>
+    </small>
+  </footer>

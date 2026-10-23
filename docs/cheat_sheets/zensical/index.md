@@ -14,5 +14,6 @@ rg -P '<a\s+href=[^>]*#|\([^)]*#[^)]*\)' docs/ -g '!docs/running_jobs/visualizat
 
 HTML for fancy button
 
-```<html><center><a href="link here" title="title here" target="_blank" class="md-button md-button--primary">Display String Here</a></center></html>
+```html
+<html><center><a href="link here" title="title here" target="_blank" class="md-button md-button--primary">Display String Here</a></center></html>
 ```

@@ -117,3 +117,17 @@ Find concurrent GPU limits associated with parent IDs:
 ```bash
 sacctmgr --parsable2 show account $PARENT_ID withassoc format=GrpTRES --noheader
 ```
+
+## scontrol
+
+Check active reservations
+
+```
+scontrol show reservations
+```
+
+check specific reservations
+
+```
+scontrol show reservation <reservation name>
+```

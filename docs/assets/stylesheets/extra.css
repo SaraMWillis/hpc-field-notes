@@ -98,5 +98,36 @@
 }
 
 .links-table {
-  background-color: #353434; 
+  background-color: #231407; 
+  padding: .5rem;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.links-table th:first-child,
+.links-table td:first-child {
+  width: 30%;
+}
+
+.links-table th:nth-child(2),
+.links-table td:nth-child(2) {
+  width: 70%;
+}
+
+.links-table th,
+.links-table td {
+  border: 1px solid #a87600;
+  padding: .5rem;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.links-table th {
+  color: #fefefe; 
+  font-weight: bold;
+    text-align: left;
+}
+
+.highlight .gp {
+    color: #3acbfb;
 }

@@ -1,3 +1,9 @@
+
+.md-typeset .md-button--primary {
+  background-color: #f8892f;
+  color: #0C234B;
+}
+
 [data-md-color-scheme="slate"] {
   --md-primary-fg-color: #0C234B;
   --md-accent-fg-color: #f8892f;

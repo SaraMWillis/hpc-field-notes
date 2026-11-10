@@ -37,6 +37,7 @@ extra_css = ["assets/stylesheets/extra.css"]
    ]},
    {"Software" = [
     "software/index.md",
+    {"Amber" = "software/amber/index.md"},
     {"Ansys"= "software/ansys/index.md"},
     {"VASP" = "software/vasp/index.md"},
     {"Gaussian" = "software/gaussian/index.md"},
@@ -65,11 +66,13 @@ extra_css = ["assets/stylesheets/extra.css"]
     {"Git" = "cheat_sheets/git/index.md"},
     {"Linux" = "cheat_sheets/linux/index.md"},
     {"MPI" = "cheat_sheets/mpi/index.md"},
+    {"Python" = "cheat_sheets/python/index.md"},
     {"Slurm" = "cheat_sheets/slurm/index.md"}
    ]},
    {"Reference" = [
     "reference/index.md",
-    {"Useful Links" = "reference/useful_links/index.md"}
+    {"Useful Links" = "reference/useful_links/index.md"},
+    {"HPC Center Docs" = "reference/hpc_centers/index.md"}
    ]},
    {"Personal Projects" = [
     "personal_projects/index.md"

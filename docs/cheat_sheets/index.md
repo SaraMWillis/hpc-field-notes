@@ -2,7 +2,10 @@
 icon: material/lightning-bolt-outline
 ---
 
-# Cheat Sheets
+<img class="hero-image" src="./images/cheet-sheets.png" width="100%" style="margin: 10px;">
+
+<h1></h1>
+<br style="clear: both;">
 
 <div class="grid cards" markdown>
 
@@ -28,7 +31,11 @@ icon: material/lightning-bolt-outline
 
     ---
 
-    
+-   :material-snake:{ .lg .middle } __[Python](./python/)__
+
+    ---
+
+    Snippets of commonly used code in my system scripts.
 
 -   :material-bottle-soda:{ .lg .middle } [__Slurm__](./slurm/)
 
